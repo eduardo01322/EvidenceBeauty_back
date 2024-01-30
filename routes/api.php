@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Clientes
 route::post('clientes', [clientecontroller::class, 'clientes']);
-route::post('clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
+route::get('clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
 route::get('clientes/cpf', [clientecontroller::class, 'pesquisarPorCpf']);
 route::get('clientes/celular', [clientecontroller::class, 'pesquisarPorCelular']);
 route::get('clientes/email', [clientecontroller::class, 'pesquisarPorEmail']);
@@ -40,8 +40,7 @@ Route::post('Adm/senha',[AdmController::class, 'redefinirSenha']);
 
 //Adm Profissional
 route::post('Adm/profissional', [Profissionalcontroller::class, 'profissionais']);
-route::post('Adm/profissional/clientes', [clientecontroller::class, 'clientes']);
-route::post('Adm/profissional/nome', [Profissionalcontroller::class, 'pesquisarPorNome']);
+route::get('Adm/profissional/nome', [Profissionalcontroller::class, 'pesquisarPorNome']);
 route::get('Adm/profissional/cpf', [Profissionalcontroller::class, 'pesquisarPorCpf']);
 route::get('Adm/profissional/celular', [Profissionalcontroller::class, 'pesquisarPorCelular']);
 route::get('Adm/profissional/email', [Profissionalcontroller::class, 'pesquisarPorEmail']);
@@ -54,7 +53,7 @@ Route::post('Adm/profissional/senha',[Profissionalcontroller::class, 'redefinirS
 
 //Adm clientes
 route::post('Adm/clientes', [clientecontroller::class, 'clientes']);
-route::post('Adm/clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
+route::get('Adm/clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
 route::get('Adm/clientes/cpf', [clientecontroller::class, 'pesquisarPorCpf']);
 route::get('Adm/clientes/celular', [clientecontroller::class, 'pesquisarPorCelular']);
 route::get('Adm/clientes/email', [clientecontroller::class, 'pesquisarPorEmail']);
@@ -77,12 +76,12 @@ route::get('Adm/servicos/visualizar', [ServicoController::class, 'retornarTodos'
 
 //Adm Horarios
 route::post('Adm/agendamento', [AgendaProfissionaiscontroller::class, 'cadastroAgenda']);
-route::post('Adm/agendamento/Profissional', [AgendaProfissionaiscontroller::class, 'pesquisarPorProfissional']);
-route::post('Adm/agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorData']);
+route::get('Adm/agendamento/Profissional', [AgendaProfissionaiscontroller::class, 'pesquisarPorProfissional']);
+route::get('Adm/agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorAgendamento']);
 route::delete('Adm/agendamento/delete/{id}', [AgendaProfissionaiscontroller::class, 'excluir']);
 route::put('Adm/agendamento/update', [AgendaProfissionaiscontroller::class, 'update']);
 route::get('Adm/agendamento/visualizar', [AgendaProfissionaiscontroller::class, 'retornarTodos']);
-route::get('Adm/agendamento/findo/{id}', [AgendaProfissionaiscontroller::class, 'pesquisarPorId']);
+route::get('Adm/agendamento/find/{id}', [AgendaProfissionaiscontroller::class, 'pesquisarPorId']);
 
 
 //Adm Tipo de pagamento
@@ -96,7 +95,7 @@ route::get('Adm/pagamento/visualizar', [PagamentoController::class, 'retornarTod
 
 //Profissional
 route::post('profissional', [Profissionalcontroller::class, 'profissionais']);
-route::post('profissional/nome', [Profissionalcontroller::class, 'pesquisarPorNome']);
+route::get('profissional/nome', [Profissionalcontroller::class, 'pesquisarPorNome']);
 route::get('profissional/cpf', [Profissionalcontroller::class, 'pesquisarPorCpf']);
 route::get('profissional/celular', [Profissionalcontroller::class, 'pesquisarPorCelular']);
 route::get('profissional/email', [Profissionalcontroller::class, 'pesquisarPorEmail']);
@@ -109,7 +108,7 @@ Route::post('profissional/senha',[Profissionalcontroller::class, 'redefinirSenha
 
 //profissional Clientes
 route::post('profissional/clientes', [clientecontroller::class, 'clientes']);
-route::post('profissional/clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
+route::get('profissional/clientes/nome', [clientecontroller::class, 'pesquisarPorNome']);
 route::get('profissional/clientes/cpf', [clientecontroller::class, 'pesquisarPorCpf']);
 route::get('profissional/clientes/celular', [clientecontroller::class, 'pesquisarPorCelular']);
 route::get('profissional/clientes/email', [clientecontroller::class, 'pesquisarPorEmail']);
@@ -121,12 +120,12 @@ Route::post('profissional/clientes/senha',[clientecontroller::class, 'redefinirS
 
 //profissional Horarios
 route::post('profissional/agendamento', [AgendaProfissionaiscontroller::class, 'cadastroAgenda']);
-route::post('profissional/agendamento/Profissional', [AgendaProfissionaiscontroller::class, 'pesquisarPorProfissional']);
-route::post('profissional/agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorData']);
+route::get('profissional/agendamento/Profissional', [AgendaProfissionaiscontroller::class, 'pesquisarPorProfissional']);
+route::get('profissional/agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorAgendamento']);
 route::delete('profissional/agendamento/delete/{id}', [AgendaProfissionaiscontroller::class, 'excluir']);
 route::put('profissional/agendamento/update', [AgendaProfissionaiscontroller::class, 'update']);
 route::get('profissional/agendamento/visualizar', [AgendaProfissionaiscontroller::class, 'retornarTodos']);
-route::get('profissional/agendamento/findo/{id}', [AgendaProfissionaiscontroller::class, 'pesquisarPorId']);
+route::get('profissional/agendamento/find/{id}', [AgendaProfissionaiscontroller::class, 'pesquisarPorId']);
 
 
 //Serviços
