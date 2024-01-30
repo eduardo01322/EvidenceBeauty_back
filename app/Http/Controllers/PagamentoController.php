@@ -37,6 +37,34 @@ public function retornarTodos(){
     ]);
 }
 
+public function retornarTodosHabilitados(){
+    $pagamento = pagamento::where('status', 'habilitado')->get();
+    if (!isset($pagamento)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há registros no sistema'
+        ]);
+    }
+    return response()->json([
+        'status'=> true,
+        'data'=> $pagamento
+    ]);
+}
+
+public function retornarTodosDesabilitados(){
+    $pagamento = pagamento::where('status', 'desabilitado')->get();
+    if (!isset($pagamento)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há registros no sistema'
+        ]);
+    }
+    return response()->json([
+        'status'=> true,
+        'data'=> $pagamento
+    ]);
+}
+
 public function pesquisarPorPagamento(Request $request){
     $pagamento =  pagamento::where('tipoDePagamento', 'like', '%'. $request->tipoDePagamento . '%')->get();
     if(count($pagamento) > 0){
@@ -109,39 +137,4 @@ public function update(PagamentoFormRequest $request){
         "message" => "Tipo de Pagamento atualizado"
     ]);
 }
-
-public function retornarTodosHabilitados(){
-    $pagamento = pagamento::where('status', 'habilitado')->get();
-    if (!isset($pagamento)) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Não há registros no sistema'
-        ]);
-    }
-    return response()->json([
-        'status'=> true,
-        'data'=> $pagamento
-    ]);
-}
-
-public function retornarTodosDesabilitados(){
-    $pagamento = pagamento::where('status', 'desabilitado')->get();
-    if (!isset($pagamento)) {
-        return response()->json([
-            'status' => false,
-            'message' => 'Não há registros no sistema'
-        ]);
-    }
-    return response()->json([
-        'status'=> true,
-        'data'=> $pagamento
-    ]);
-}
-
-
-
-
-
-
-
 }
