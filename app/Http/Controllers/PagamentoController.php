@@ -12,6 +12,8 @@ class PagamentoController extends Controller
         $pagamento= Pagamento::create([
             'tipoDePagamento'=> $request ->tipoDePagamento,
             'taxa'=> $request ->taxa,
+            'status'=> $request ->status,
+       
         ]);
 
         return response()->json([
@@ -20,8 +22,15 @@ class PagamentoController extends Controller
             "data" => $pagamento
         ], 200);
 }
+
 public function retornarTodos(){
     $pagamento = pagamento::all();
+    if (!isset($pagamento)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há registros no sistema'
+        ]);
+    }
     return response()->json([
         'status'=> true,
         'data'=> $pagamento
@@ -89,6 +98,9 @@ public function update(PagamentoFormRequest $request){
     if(isset($request->taxa)){
         $pagamento->taxa = $request->taxa;
     }
+    if(isset($request->status)){
+        $pagamento->status = $request->status;
+    }
 
     $pagamento->update();
 
@@ -97,4 +109,39 @@ public function update(PagamentoFormRequest $request){
         "message" => "Tipo de Pagamento atualizado"
     ]);
 }
+
+public function retornarTodosHabilitados(){
+    $pagamento = pagamento::where('status', 'habilitado')->get();
+    if (!isset($pagamento)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há registros no sistema'
+        ]);
+    }
+    return response()->json([
+        'status'=> true,
+        'data'=> $pagamento
+    ]);
+}
+
+public function retornarTodosDesabilitados(){
+    $pagamento = pagamento::where('status', 'desabilitado')->get();
+    if (!isset($pagamento)) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Não há registros no sistema'
+        ]);
+    }
+    return response()->json([
+        'status'=> true,
+        'data'=> $pagamento
+    ]);
+}
+
+
+
+
+
+
+
 }
