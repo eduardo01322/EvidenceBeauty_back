@@ -150,7 +150,7 @@ route::get('pagamento/visualizar', [PagamentoController::class, 'retornarTodos']
 //Agendamento Profissionais
 route::post('agendamento', [AgendaProfissionaiscontroller::class, 'cadastroAgenda']);
 route::post('agendamento/Profissional', [AgendaProfissionaiscontroller::class, 'pesquisarPorProfissional']);
-route::post('agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorData']);
+route::post('agendamento/data', [AgendaProfissionaiscontroller::class, 'pesquisarPorAgendamento']);
 route::delete('agendamento/delete/{id}', [AgendaProfissionaiscontroller::class, 'excluir']);
 route::put('agendamento/update', [AgendaProfissionaiscontroller::class, 'update']);
 route::get('agendamento/visualizar', [AgendaProfissionaiscontroller::class, 'retornarTodos']);
