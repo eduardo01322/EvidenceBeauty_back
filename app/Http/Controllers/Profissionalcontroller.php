@@ -57,7 +57,7 @@ public function redefinirSenha(Request $request){
     $profissional->update();    
 
     return response()->json([
-        'status' => false,
+        'status' => true,
         'message' => "Sua senha foi atualizada"
     ]);
 }
