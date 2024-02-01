@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PagamentoFormRequest;
+use App\Http\Requests\PagamentoFormRequestUpdate;
 use App\Models\Pagamento;
 use Illuminate\Http\Request;
 
@@ -110,7 +111,7 @@ public function excluir($id){
     ]);
 }
 
-public function update(PagamentoFormRequest $request){
+public function update(PagamentoFormRequestUpdate $request){
     $pagamento = pagamento::find($request->id);
 
     if(!isset($pagamento)){
