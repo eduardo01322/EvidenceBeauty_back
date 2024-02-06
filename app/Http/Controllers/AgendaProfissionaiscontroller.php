@@ -114,10 +114,10 @@ return response()->json([
     public function update(AgendaProfissionaisFormRequest $request){
         $agendamento = AgendaProfissionais::find($request->id);
 
-        $dataHoraAgendamento = new DateTime($request->dataHora);
+        $dataHora = new DateTime($request->dataHora);
         $dataAtual = Carbon::now('America/Sao_Paulo');
     
-        if ($dataHoraAgendamento < $dataAtual) {
+        if ($dataHora < $dataAtual) {
             return response()->json([
                 "success" => false,
                 "message" => "Não é possível cadastrar um horário antes do dia atual"
