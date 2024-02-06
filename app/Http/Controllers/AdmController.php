@@ -42,6 +42,13 @@ public function redefinirSenha(Request $request){
             'message' => "Adm não encontrado"
         ]);
     }
+    $Adm = Adm::where('cpf', $request->cpf)->first();
+    if (!isset($Adm)){
+        return response()->json([
+            'status' => false,
+            'message' => "Adm não encontrado"
+        ]);
+    }
 
     $SenhaNova = $request->SenhaNova;
     $Adm->password = Hash::make($SenhaNova);

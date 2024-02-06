@@ -50,6 +50,13 @@ class clientecontroller extends Controller
                 'message' => "Cliente não encontrado"
             ]);
         }
+        $Cliente = cliente::where('cpf', $request->cpf)->first();
+    if (!isset($Cliente)){
+        return response()->json([
+            'status' => false,
+            'message' => "cliente não encontrado"
+        ]);
+    }
 
         $SenhaNova = $request->SenhaNova;
         $Cliente->senha = Hash::make($SenhaNova);

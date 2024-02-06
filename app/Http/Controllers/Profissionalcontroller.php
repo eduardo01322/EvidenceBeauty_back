@@ -51,7 +51,13 @@ public function redefinirSenha(Request $request){
             'message' => "Cliente não encontrado"
         ]);
     }
-
+    $profissional = Profissional::where('cpf', $request->cpf)->first();
+    if (!isset($profissional)){
+        return response()->json([
+            'status' => false,
+            'message' => "Adm não encontrado"
+        ]);
+    }
     $SenhaNova = $request->SenhaNova;
     $profissional->senha = Hash::make($SenhaNova);
     $profissional->update();    
