@@ -6,6 +6,7 @@ use App\Http\Requests\AgendaFormRequest;
 use Carbon\Carbon;
 use App\Http\Requests\AgendaProfissionaisFormRequest;
 use App\Models\AgendaProfissionais;
+use App\Models\Profissional;
 use DateTime;
 
 use Illuminate\Http\Request;
@@ -24,6 +25,8 @@ class AgendaProfissionaiscontroller extends Controller
             ], 400);
         }
 
+        $profissional = Profissional::find($request->profissional_id);
+        if (isset($profissional)){
         $agendamento =AgendaProfissionais::create([
            
             'profissional_id' => $request->profissional_id,
@@ -36,6 +39,13 @@ class AgendaProfissionaiscontroller extends Controller
             "data" => $agendamento
         ], 200);
     }
+    if (!isset($profissional)) {
+        return response()->json([
+            "success" => false,
+            "message" => "Profissional nao encontrado"
+        ], 200);
+    }
+}
 
     //visualizar todos
     public function retornarTodos(){
